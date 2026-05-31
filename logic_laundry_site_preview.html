@@ -1,0 +1,482 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#F7F9FE;color:#1A1F36}
+.preview{font-family:'DM Sans',sans-serif;background:#F7F9FE;color:#1A1F36;overflow:hidden}
+h1,h2,h3,h4{font-family:'Syne',sans-serif}
+.container{max-width:900px;margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;gap:7px;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;padding:10px 20px;border-radius:999px;border:2px solid transparent;cursor:pointer;text-decoration:none;transition:all .2s}
+.btn-primary{background:#1A73E8;color:#fff;box-shadow:0 6px 18px rgba(26,115,232,.28)}
+.btn-secondary{background:#fff;color:#1A73E8;border-color:#E4E8F0}
+.btn-wa{background:#25D366;color:#fff}
+.tag{display:inline-block;font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#1A73E8;background:#E8F0FE;padding:5px 12px;border-radius:999px;margin-bottom:10px}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:5px 12px;border-radius:999px;background:#FFD54F;color:#6B4800;margin-bottom:12px}
+
+/* NAV */
+.nav{background:rgba(255,255,255,.97);border-bottom:1px solid #E4E8F0;padding:12px 0;position:sticky;top:0;z-index:10}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:900px;margin:0 auto;padding:0 20px}
+.logo{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:#1A1F36;display:flex;align-items:center;gap:7px}
+.logo span{color:#1A73E8}
+.nav-links{display:flex;gap:24px}
+.nav-links a{font-family:'Syne',sans-serif;font-size:13px;font-weight:500;color:#6B7280;text-decoration:none}
+.nav-links a:hover{color:#1A73E8}
+
+/* HERO */
+.hero{background:#F7F9FE;padding:48px 0 56px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 70% 40%,rgba(26,115,232,.06),transparent 70%);pointer-events:none}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.hero-copy{}
+.hero-headline{font-size:38px;font-weight:800;line-height:1.12;margin-bottom:12px;color:#1A1F36}
+.hero-headline span{color:#1A73E8;position:relative}
+.hero-headline span::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:5px;background:#FFD54F;border-radius:3px}
+.hero-sub{font-size:15px;color:#6B7280;line-height:1.7;margin-bottom:16px;max-width:400px}
+.hero-sub em{font-style:italic;color:#1A1F36;font-weight:500}
+.pill{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1.5px solid #E4E8F0;border-radius:999px;padding:7px 18px;margin-bottom:16px;box-shadow:0 1px 4px rgba(26,31,54,.06)}
+.pill-label{font-size:11px;font-weight:500;color:#6B7280;text-transform:uppercase;letter-spacing:.06em}
+.pill-price{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#1A73E8}
+.pill-price small{font-size:11px;color:#9CA3AF;font-weight:400}
+.hero-actions{display:flex;gap:12px;margin-bottom:14px}
+.hero-trust{display:flex;gap:16px;flex-wrap:wrap}
+.hero-trust span{font-size:12px;font-weight:500;color:#6B7280}
+.hero-visual{position:relative}
+.hero-img-frame{border-radius:20px;overflow:hidden;background:#E8F0FE;aspect-ratio:4/3;position:relative}
+.hero-img-placeholder{width:100%;height:100%;background:linear-gradient(135deg,#dbeafe 0%,#c7d9f8 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px}
+.hero-img-placeholder i.ti{font-size:36px;color:#1A73E8;opacity:.5}
+.hero-img-placeholder p{font-size:12px;color:#1A73E8;opacity:.6;font-weight:500}
+.float-card{position:absolute;background:#fff;border-radius:14px;padding:10px 14px;box-shadow:0 8px 24px rgba(26,31,54,.12);display:flex;align-items:center;gap:8px;z-index:2}
+.float-card-1{bottom:-12px;left:-16px}
+.float-card-2{top:-10px;right:-8px}
+.fc-icon{font-size:20px}
+.fc-strong{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#1A1F36;line-height:1}
+.fc-small{font-size:11px;color:#6B7280}
+.quality-badge{position:absolute;top:-10px;left:-10px;width:72px;height:72px;background:#1A73E8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(26,115,232,.35);z-index:3}
+.qb-inner{text-align:center;color:#fff}
+.qb-inner b{display:block;font-size:13px;font-weight:800}
+.qb-inner span{display:block;font-size:7.5px;font-weight:700;letter-spacing:.05em;color:#FFD54F}
+
+/* TRACKING BAR */
+.tracking{background:linear-gradient(135deg,#1A73E8,#1557B0);color:#fff;padding:12px 0}
+.tracking-inner{display:flex;align-items:center;gap:12px}
+.tracking-inner p{flex:1;font-size:13px;color:rgba(255,255,255,.9)}
+.tracking-inner p strong{color:#fff}
+.cs-tag{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;background:#FFD54F;color:#6B4800;padding:4px 12px;border-radius:999px;text-transform:uppercase;letter-spacing:.06em}
+
+/* SERVICES */
+.services{padding:56px 0;background:#F7F9FE}
+.section-header{margin-bottom:36px}
+.section-title{font-size:28px;font-weight:700;margin-bottom:8px;line-height:1.2}
+.section-sub{font-size:14px;color:#6B7280;max-width:500px;line-height:1.65}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.scard{background:#fff;border-radius:14px;padding:20px;border:1.5px solid #E4E8F0;transition:all .2s;position:relative;overflow:hidden}
+.scard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#1A73E8,#4A90E2);transform:scaleX(0);transform-origin:left;transition:transform .2s}
+.scard:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(26,31,54,.1)}
+.scard:hover::before{transform:scaleX(1)}
+.scard-accent{background:linear-gradient(135deg,#1A73E8,#1557B0);border-color:transparent}
+.scard-accent h3,.scard-accent p{color:rgba(255,255,255,.95)}
+.scard-icon{width:44px;height:44px;margin-bottom:10px}
+.scard h3{font-size:14px;margin-bottom:5px;color:#1A1F36}
+.scard p{font-size:12px;color:#6B7280;line-height:1.6;margin-bottom:8px}
+.scard-tag{display:inline-block;font-size:11px;font-weight:600;background:#E8F0FE;color:#1A73E8;padding:3px 10px;border-radius:999px}
+.scard-accent .scard-tag{background:rgba(255,255,255,.2);color:#fff}
+
+/* PRICING */
+.pricing{padding:56px 0;background:#fff}
+.pricing-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px}
+.pcard{background:#fff;border:1.5px solid #E4E8F0;border-radius:14px;padding:18px 14px;display:flex;flex-direction:column;gap:10px;transition:all .2s;position:relative}
+.pcard:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(26,31,54,.1)}
+.pcard-featured{background:#1A73E8;border-color:transparent;box-shadow:0 8px 24px rgba(26,115,232,.3)}
+.pcard-featured h3,.pcard-featured .p-amount,.pcard-featured .p-feat li{color:#fff}
+.pcard-featured .p-unit{color:rgba(255,255,255,.7)}
+.pcard-featured .fp-badge{background:#FFD54F;color:#6B4800;font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;position:absolute;top:10px;right:10px}
+.pcard-featured .btn{background:#fff;color:#1A73E8;border:none;font-size:12px;padding:8px 14px}
+.pcard h3{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#1A1F36;margin-top:4px}
+.p-icon{font-size:20px}
+.p-amount{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#1A73E8;display:block;line-height:1}
+.p-unit{font-size:11px;color:#6B7280}
+.p-feat{list-style:none}
+.p-feat li{font-size:11px;color:#6B7280;padding:4px 0;border-bottom:1px solid rgba(228,232,240,.5)}
+.p-feat li:last-child{border-bottom:none}
+.pcard .btn-outline{font-size:12px;padding:8px 14px;background:transparent;color:#1A73E8;border:1.5px solid #1A73E8;border-radius:999px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:600}
+.pnote{display:flex;align-items:flex-start;gap:8px;background:#E8F0FE;border-radius:10px;padding:10px 14px}
+.pnote p{font-size:12px;color:#6B7280}
+
+/* WHY US */
+.why{padding:56px 0;background:#F7F9FE}
+.why-inner{display:grid;grid-template-columns:300px 1fr;gap:48px;align-items:start}
+.why-copy .section-sub{margin-bottom:20px}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fitem{display:flex;gap:12px;padding:14px;background:#fff;border-radius:12px;border:1.5px solid #E4E8F0;transition:all .2s}
+.fitem:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(26,31,54,.08)}
+.fitem-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.fib{background:#E8F0FE;color:#1A73E8}
+.fiy{background:#FFF8E1;color:#F9A825}
+.fig{background:#E8F5E9;color:#388E3C}
+.fit{background:#E0F7FA;color:#0097A7}
+.fitem h4{font-size:13px;margin-bottom:2px;color:#1A1F36;font-family:'Syne',sans-serif}
+.fitem p{font-size:12px;color:#6B7280;line-height:1.55}
+
+/* TESTIMONIALS */
+.testimonials{padding:56px 0;background:#fff}
+.test-grid{display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:14px}
+.tcard{background:#fff;border:1.5px solid #E4E8F0;border-radius:18px;padding:20px;transition:all .2s}
+.tcard:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(26,31,54,.09)}
+.tcard-featured{background:#1A73E8;border-color:transparent}
+.t-stars{font-size:13px;color:#F9A825;letter-spacing:2px;margin-bottom:10px}
+.tcard-featured .t-stars{color:#FFD54F}
+.t-text{font-size:13px;line-height:1.7;color:#6B7280;margin-bottom:14px;font-style:italic}
+.tcard-featured .t-text{color:rgba(255,255,255,.88)}
+.t-author{display:flex;align-items:center;gap:10px}
+.t-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;flex-shrink:0}
+.t-author strong{display:block;font-size:13px;color:#1A1F36;font-family:'Syne',sans-serif}
+.tcard-featured .t-author strong{color:#fff}
+.t-author small{font-size:11px;color:#6B7280}
+.tcard-featured .t-author small{color:rgba(255,255,255,.6)}
+
+/* CONTACT */
+.contact{padding:56px 0;background:#F7F9FE}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.cblocks{display:flex;flex-direction:column;gap:16px}
+.cblock{display:flex;gap:12px;align-items:flex-start}
+.cblock-icon{width:40px;height:40px;background:#E8F0FE;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.cblock h4{font-size:13px;color:#1A1F36;margin-bottom:2px;font-family:'Syne',sans-serif}
+.cblock a{font-size:13px;color:#1A73E8;text-decoration:none;font-weight:500}
+.cblock p,.cblock small{font-size:12px;color:#6B7280;display:block;margin:0}
+.cform{background:#fff;border-radius:18px;padding:24px;border:1.5px solid #E4E8F0;box-shadow:0 4px 14px rgba(26,31,54,.06)}
+.cform h3{font-size:17px;margin-bottom:16px;color:#1A1F36}
+.fgroup{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.fgroup label{font-size:12px;font-weight:600;color:#1A1F36;font-family:'Syne',sans-serif}
+.fgroup input,.fgroup select,.fgroup textarea{padding:9px 12px;border:1.5px solid #E4E8F0;border-radius:10px;background:#F7F9FE;color:#1A1F36;font-size:13px;font-family:'DM Sans',sans-serif;outline:none}
+.fgroup input:focus,.fgroup select:focus,.fgroup textarea:focus{border-color:#1A73E8;background:#fff}
+.fgroup textarea{resize:vertical;height:80px}
+
+/* FOOTER */
+.footer{background:#1A1F36;color:rgba(255,255,255,.7);padding:40px 0 16px}
+.footer-inner{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:32px;margin-bottom:28px}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,.55);margin-top:10px;max-width:220px;line-height:1.6}
+.footer-col h4{font-family:'Syne',sans-serif;font-size:13px;color:#fff;margin-bottom:10px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.footer-col ul li a{font-size:13px;color:rgba(255,255,255,.55);text-decoration:none}
+.footer-col p{font-size:13px;color:rgba(255,255,255,.55);margin-bottom:5px}
+.footer-col a{font-size:13px;color:rgba(255,255,255,.55);text-decoration:none;display:block;margin-bottom:5px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:14px;text-align:center}
+.footer-bottom p{font-size:12px;color:rgba(255,255,255,.35)}
+
+/* WA FLOAT */
+.wa-float{position:fixed;bottom:20px;right:16px;display:flex;align-items:center;gap:7px;background:#25D366;color:#fff;padding:11px 18px 11px 14px;border-radius:999px;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;box-shadow:0 4px 18px rgba(37,211,102,.45);z-index:100;text-decoration:none;animation:pulseWA 3s ease-in-out infinite}
+@keyframes pulseWA{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.4)}50%{box-shadow:0 4px 26px rgba(37,211,102,.65),0 0 0 7px rgba(37,211,102,.08)}}
+
+/* SVG icons inline */
+svg{overflow:visible}
+</style>
+
+<div class="preview">
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo"><span>◈</span> Logic <strong style="color:#1A73E8">Laundry</strong></div>
+    <div class="nav-links">
+      <a href="#">Services</a>
+      <a href="#">Pricing</a>
+      <a href="#">Why Us</a>
+      <a href="#">Contact</a>
+    </div>
+    <a href="#" class="btn btn-wa" style="font-size:12px;padding:9px 16px">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="badge">⚡ Free Pickup &amp; Delivery</div>
+        <h1 class="hero-headline">Laundry Made <span>Simple.</span></h1>
+        <p class="hero-sub">Laundry shouldn't stress you. We pick it up, clean it, fold it, and bring it back <em>fresher than your weekend plans.</em></p>
+        <div class="pill">
+          <span class="pill-label">Starting from</span>
+          <span class="pill-price">KSH 80 <small>/ kilo</small></span>
+        </div>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            Call Now
+          </a>
+          <a href="#" class="btn btn-secondary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Book Pickup
+          </a>
+        </div>
+        <div class="hero-trust">
+          <span>✓ Same-day service</span>
+          <span>✓ Eco-friendly detergents</span>
+          <span>✓ 48-hr freshness guarantee</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-img-frame">
+          <div class="hero-img-placeholder">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1A73E8" stroke-width="1.2" opacity=".4"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <p>laundry1.jpeg</p>
+          </div>
+          <div class="quality-badge">
+            <div class="qb-inner"><b>48HR</b><span>FRESHNESS</span><span style="font-size:10px">★★★★★</span></div>
+          </div>
+        </div>
+        <div class="float-card float-card-1">
+          <span class="fc-icon">🧺</span>
+          <div><div class="fc-strong">250+</div><div class="fc-small">Happy Customers</div></div>
+        </div>
+        <div class="float-card float-card-2">
+          <span class="fc-icon">⭐</span>
+          <div><div class="fc-strong">4.9 / 5</div><div class="fc-small">Average Rating</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACKING BAR -->
+<div class="tracking">
+  <div class="container">
+    <div class="tracking-inner">
+      <span style="font-size:18px">📍</span>
+      <p><strong>Track Your Laundry Status</strong> — Real-time order tracking launching soon.</p>
+      <span class="cs-tag">Coming Soon</span>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="container">
+    <div class="section-header">
+      <div class="tag">What We Do</div>
+      <h2 class="section-title">Every Fabric, Perfectly Handled.</h2>
+      <p class="section-sub">From your favourite shirt to your boardroom curtains — we treat every item like it's precious.</p>
+    </div>
+    <div class="services-grid">
+      <div class="scard">
+        <div class="scard-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="#E8F0FE"/><path d="M14 30c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#1A73E8" stroke-width="2.5" stroke-linecap="round"/><path d="M10 34h28" stroke="#1A73E8" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+        <h3>Washing</h3>
+        <p>Machine or hand-wash using premium detergents. Sorted by colour, fabric, and care labels — always.</p>
+        <span class="scard-tag">From KSH 80/kg</span>
+      </div>
+      <div class="scard">
+        <div class="scard-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="#FFF8E1"/><rect x="14" y="18" width="20" height="14" rx="3" fill="#FFD54F" opacity=".4"/><path d="M18 22h12M18 26h8" stroke="#F9A825" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+        <h3>Folding</h3>
+        <p>Every item folded with military precision. Your wardrobe will finally look like the ones on Pinterest.</p>
+        <span class="scard-tag">Included in wash</span>
+      </div>
+      <div class="scard">
+        <div class="scard-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="#FCE4EC"/><path d="M16 32h16l-2-12H18L16 32z" stroke="#E91E63" stroke-width="2" fill="#F48FB1" opacity=".3"/><ellipse cx="24" cy="20" rx="6" ry="3" stroke="#E91E63" stroke-width="2"/></svg></div>
+        <h3>Ironing</h3>
+        <p>Crisp, wrinkle-free results for shirts, trousers, and everything in between. Show up sharp, every day.</p>
+        <span class="scard-tag">KSH 30/item</span>
+      </div>
+      <div class="scard">
+        <div class="scard-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="#E8F5E9"/><path d="M18 28c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="#388E3C" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="18" r="2.5" fill="#4CAF50"/></svg></div>
+        <h3>Stain Removal</h3>
+        <p>Red wine? Muddy kit? Mystery stain? We've seen it all. Our stain-busting treatment handles what your machine can't.</p>
+        <span class="scard-tag">Pre-treatment included</span>
+      </div>
+      <div class="scard">
+        <div class="scard-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="#EDE7F6"/><rect x="13" y="15" width="22" height="18" rx="4" stroke="#7B1FA2" stroke-width="2.5" fill="#CE93D8" opacity=".3"/><path d="M17 19h14M17 23h14" stroke="#7B1FA2" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Bedding &amp; Curtains</h3>
+        <p>Duvets, pillowcases, heavy curtains. Deep-cleaned and dried properly — because you deserve good sleep.</p>
+        <span class="scard-tag">From KSH 500/set</span>
+      </div>
+      <div class="scard scard-accent">
+        <div class="scard-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(255,255,255,.15)"/><rect x="14" y="17" width="20" height="14" rx="2" fill="rgba(255,255,255,.25)"/><path d="M19 21h10M19 25h7" stroke="white" stroke-width="2.5" stroke-linecap="round"/><circle cx="32" cy="16" r="4" fill="#FFD54F"/></svg></div>
+        <h3>Corporate Laundry</h3>
+        <p>Hotels, restaurants, salons — bulk loads with consistency, discretion, and dedicated scheduling.</p>
+        <span class="scard-tag">Custom packages ↗</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
+  <div class="container">
+    <div class="section-header" style="text-align:center">
+      <div class="tag">Transparent Pricing</div>
+      <h2 class="section-title">No Hidden Costs. Ever.</h2>
+      <p class="section-sub" style="margin:0 auto">What you see is what you pay. Honest pricing, as much as we believe in clean laundry.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pcard">
+        <span class="p-icon">⚖️</span>
+        <h3>Per Kilo</h3>
+        <span class="p-amount">KSH 80</span><span class="p-unit">/ kilo</span>
+        <ul class="p-feat"><li>✓ Wash + dry</li><li>✓ Sorted by colour</li><li>✓ Eco detergents</li><li>✓ Free pickup</li></ul>
+        <button class="pcard .btn-outline" style="background:transparent;color:#1A73E8;border:1.5px solid #1A73E8;border-radius:999px;padding:8px 14px;font-family:'Syne',sans-serif;font-weight:600;font-size:12px;cursor:pointer">Book Now</button>
+      </div>
+      <div class="pcard pcard-featured">
+        <div class="fp-badge">Popular</div>
+        <span class="p-icon">⚡</span>
+        <h3>Express</h3>
+        <span class="p-amount">KSH 120</span><span class="p-unit">/ kilo</span>
+        <ul class="p-feat"><li>✓ Ready in 6 hours</li><li>✓ Priority handling</li><li>✓ Same-day delivery</li><li>✓ SMS updates</li></ul>
+        <button class="btn" style="background:#fff;color:#1A73E8;border:none;font-size:12px;padding:9px 14px;border-radius:999px;font-family:'Syne',sans-serif;font-weight:600;cursor:pointer">Book Express</button>
+      </div>
+      <div class="pcard">
+        <span class="p-icon">🛏️</span>
+        <h3>Bedding Set</h3>
+        <span class="p-amount">KSH 500</span><span class="p-unit">/ set</span>
+        <ul class="p-feat"><li>✓ Sheets + pillowcases</li><li>✓ Duvet cover</li><li>✓ Deep clean</li><li>✓ Tumble-dried</li></ul>
+        <button class="pcard .btn-outline" style="background:transparent;color:#1A73E8;border:1.5px solid #1A73E8;border-radius:999px;padding:8px 14px;font-family:'Syne',sans-serif;font-weight:600;font-size:12px;cursor:pointer">Book Now</button>
+      </div>
+      <div class="pcard">
+        <span class="p-icon">🪟</span>
+        <h3>Curtains</h3>
+        <span class="p-amount">KSH 300</span><span class="p-unit">/ pair</span>
+        <ul class="p-feat"><li>✓ Machine washed</li><li>✓ Stain treatment</li><li>✓ Pressed</li><li>✓ 72-hr turnaround</li></ul>
+        <button class="pcard .btn-outline" style="background:transparent;color:#1A73E8;border:1.5px solid #1A73E8;border-radius:999px;padding:8px 14px;font-family:'Syne',sans-serif;font-weight:600;font-size:12px;cursor:pointer">Book Now</button>
+      </div>
+      <div class="pcard" style="background:linear-gradient(135deg,#F7F9FE,#E8F0FE)">
+        <span class="p-icon">🏢</span>
+        <h3>Corporate</h3>
+        <span class="p-amount" style="font-size:18px">Custom</span><span class="p-unit">pricing</span>
+        <ul class="p-feat"><li>✓ Hotels &amp; restaurants</li><li>✓ Weekly scheduling</li><li>✓ Volume discounts</li><li>✓ Dedicated mgr</li></ul>
+        <button class="pcard .btn-outline" style="background:transparent;color:#1A73E8;border:1.5px solid #1A73E8;border-radius:999px;padding:8px 14px;font-family:'Syne',sans-serif;font-weight:600;font-size:12px;cursor:pointer">Call Us</button>
+      </div>
+    </div>
+    <div class="pnote">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1A73E8" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p>Minimum order: 3kg. Free pickup &amp; delivery on all orders above KSH 500. Ironing priced separately at KSH 30/item.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why">
+  <div class="container">
+    <div class="why-inner">
+      <div class="why-copy">
+        <div class="tag">Why Logic Laundry?</div>
+        <h2 class="section-title">We Take the "Chore" Out of Laundry.</h2>
+        <p class="section-sub">Other laundries just wash. We care about the entire experience — pickup to delivery.</p>
+        <a href="#" class="btn btn-primary" style="font-size:13px;padding:10px 20px">Try Us Risk-Free →</a>
+      </div>
+      <div class="why-grid">
+        <div class="fitem"><div class="fitem-icon fib">⏱</div><div><h4>Fast Turnaround</h4><p>Standard: 24–48 hrs. Express: same day.</p></div></div>
+        <div class="fitem"><div class="fitem-icon fiy">🚚</div><div><h4>Free Pickup &amp; Delivery</h4><p>Orders above KSH 500 picked up free.</p></div></div>
+        <div class="fitem"><div class="fitem-icon fig">🛡</div><div><h4>Professional Handling</h4><p>Trained staff, proper sorting, care-label compliance.</p></div></div>
+        <div class="fitem"><div class="fitem-icon fit">❤</div><div><h4>Satisfaction Guarantee</h4><p>Not happy? We'll re-clean it. Free. No drama.</p></div></div>
+        <div class="fitem"><div class="fitem-icon fig">🌿</div><div><h4>Eco-Friendly Detergents</h4><p>Biodegradable and skin-safe — kind to everything.</p></div></div>
+        <div class="fitem"><div class="fitem-icon fiy">💰</div><div><h4>Affordable Pricing</h4><p>Premium service, not premium-only prices.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-header" style="text-align:center">
+      <div class="tag">Happy Customers</div>
+      <h2 class="section-title">Don't Just Take Our Word For It.</h2>
+    </div>
+    <div class="test-grid">
+      <div class="tcard">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"I used to dread laundry day. Now I just send a WhatsApp and everything comes back folded better than I ever managed."</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background:#E8F0FE;color:#1A73E8">WK</div>
+          <div><strong>Wanjiru Kamau</strong><small>Kasarani, Nairobi</small></div>
+        </div>
+      </div>
+      <div class="tcard tcard-featured">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"As a busy med student with zero time, this service is literally a lifesaver. The stain removal on my white coat? Miraculous."</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background:rgba(255,255,255,.2);color:#fff">BM</div>
+          <div><strong>Brian Mutua</strong><small>Westlands, Nairobi</small></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"Our salon towels, every week. Forty towels, always returned smelling fresh, folded neatly. Clients have actually commented on them!"</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background:#E8F5E9;color:#388E3C">AN</div>
+          <div><strong>Aisha Ndungu</strong><small>Salon Owner, Kilimani</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+  <div class="container">
+    <div class="section-header" style="text-align:center">
+      <div class="tag">Get in Touch</div>
+      <h2 class="section-title">We're Always a Message Away.</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="cblocks">
+        <div class="cblock"><div class="cblock-icon">📞</div><div><h4>Call Us</h4><a href="#">+254 700 000 000</a><small>Mon–Sat, 7am–8pm</small></div></div>
+        <div class="cblock"><div class="cblock-icon">💬</div><div><h4>WhatsApp</h4><a href="#">Chat on WhatsApp</a><small>Fastest response guaranteed</small></div></div>
+        <div class="cblock"><div class="cblock-icon">🕐</div><div><h4>Hours</h4><p>Mon–Sat: 7:00 AM – 8:00 PM</p><p>Sunday: 9:00 AM – 4:00 PM</p></div></div>
+        <div class="cblock"><div class="cblock-icon">📍</div><div><h4>Location</h4><p>Nairobi, Kenya</p><small>Serving all major estates</small></div></div>
+        <a href="#" class="btn btn-wa" style="font-size:13px;justify-content:center;padding:12px 20px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Quick Order on WhatsApp
+        </a>
+      </div>
+      <div class="cform">
+        <h3>Send Us a Message</h3>
+        <div class="fgroup"><label>Your Name</label><input type="text" placeholder="Full name"/></div>
+        <div class="fgroup"><label>Phone Number</label><input type="tel" placeholder="07XX XXX XXX"/></div>
+        <div class="fgroup"><label>Service Interested In</label><select><option>Select a service</option><option>Regular Washing</option><option>Express Service</option><option>Bedding &amp; Curtains</option><option>Corporate Package</option></select></div>
+        <div class="fgroup"><label>Message</label><textarea placeholder="Tell us how we can help..."></textarea></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:14px">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:#fff;display:flex;align-items:center;gap:7px"><span style="color:#FFD54F">◈</span> Logic <strong style="color:#FFD54F">Laundry</strong></div>
+        <p>Nairobi's most trusted laundry service. Professional, reliable, always on time.</p>
+        <p style="font-size:12px;color:rgba(255,255,255,.4);margin-top:8px">🌿 Proud users of eco-friendly detergents.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul><li><a href="#">Services</a></li><li><a href="#">Pricing</a></li><li><a href="#">Why Us</a></li><li><a href="#">Book Pickup</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul><li><a href="#">Washing &amp; Folding</a></li><li><a href="#">Ironing</a></li><li><a href="#">Bedding &amp; Curtains</a></li><li><a href="#">Corporate</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="#">+254 700 000 000</a>
+        <a href="#">WhatsApp Us</a>
+        <p>Mon–Sat: 7am – 8pm</p>
+        <p>Nairobi, Kenya</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Logic Laundry Services. All rights reserved. Made with ♥ in Nairobi.</p>
+      <p style="margin-top:4px">Because clean clothes change your whole mood.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="#" class="wa-float">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  Order Now
+</a>
+
+</div>
