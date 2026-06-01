@@ -1,482 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Logic Laundry Services – Laundry Made Simple | Ongata Rongai</title>
+  <meta name="description" content="Free Pickup & Delivery. KSH 80 Per Kilo. Ongata Rongai's premium laundry service. Sunrise Apartments – MANNA. Call +254 715 617 654"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap');
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'DM Sans',sans-serif;background:#F7F9FE;color:#1A1F36}
-.preview{font-family:'DM Sans',sans-serif;background:#F7F9FE;color:#1A1F36;overflow:hidden}
-h1,h2,h3,h4{font-family:'Syne',sans-serif}
-.container{max-width:900px;margin:0 auto;padding:0 20px}
-.btn{display:inline-flex;align-items:center;gap:7px;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;padding:10px 20px;border-radius:999px;border:2px solid transparent;cursor:pointer;text-decoration:none;transition:all .2s}
-.btn-primary{background:#1A73E8;color:#fff;box-shadow:0 6px 18px rgba(26,115,232,.28)}
-.btn-secondary{background:#fff;color:#1A73E8;border-color:#E4E8F0}
-.btn-wa{background:#25D366;color:#fff}
-.tag{display:inline-block;font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#1A73E8;background:#E8F0FE;padding:5px 12px;border-radius:999px;margin-bottom:10px}
-.badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:5px 12px;border-radius:999px;background:#FFD54F;color:#6B4800;margin-bottom:12px}
+<!-- ═══ SOAP BUBBLES CANVAS (background, all pages) ═══ -->
+<canvas id="bubblesCanvas" aria-hidden="true"></canvas>
 
-/* NAV */
-.nav{background:rgba(255,255,255,.97);border-bottom:1px solid #E4E8F0;padding:12px 0;position:sticky;top:0;z-index:10}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:900px;margin:0 auto;padding:0 20px}
-.logo{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:#1A1F36;display:flex;align-items:center;gap:7px}
-.logo span{color:#1A73E8}
-.nav-links{display:flex;gap:24px}
-.nav-links a{font-family:'Syne',sans-serif;font-size:13px;font-weight:500;color:#6B7280;text-decoration:none}
-.nav-links a:hover{color:#1A73E8}
-
-/* HERO */
-.hero{background:#F7F9FE;padding:48px 0 56px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 70% 40%,rgba(26,115,232,.06),transparent 70%);pointer-events:none}
-.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-.hero-copy{}
-.hero-headline{font-size:38px;font-weight:800;line-height:1.12;margin-bottom:12px;color:#1A1F36}
-.hero-headline span{color:#1A73E8;position:relative}
-.hero-headline span::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:5px;background:#FFD54F;border-radius:3px}
-.hero-sub{font-size:15px;color:#6B7280;line-height:1.7;margin-bottom:16px;max-width:400px}
-.hero-sub em{font-style:italic;color:#1A1F36;font-weight:500}
-.pill{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1.5px solid #E4E8F0;border-radius:999px;padding:7px 18px;margin-bottom:16px;box-shadow:0 1px 4px rgba(26,31,54,.06)}
-.pill-label{font-size:11px;font-weight:500;color:#6B7280;text-transform:uppercase;letter-spacing:.06em}
-.pill-price{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#1A73E8}
-.pill-price small{font-size:11px;color:#9CA3AF;font-weight:400}
-.hero-actions{display:flex;gap:12px;margin-bottom:14px}
-.hero-trust{display:flex;gap:16px;flex-wrap:wrap}
-.hero-trust span{font-size:12px;font-weight:500;color:#6B7280}
-.hero-visual{position:relative}
-.hero-img-frame{border-radius:20px;overflow:hidden;background:#E8F0FE;aspect-ratio:4/3;position:relative}
-.hero-img-placeholder{width:100%;height:100%;background:linear-gradient(135deg,#dbeafe 0%,#c7d9f8 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px}
-.hero-img-placeholder i.ti{font-size:36px;color:#1A73E8;opacity:.5}
-.hero-img-placeholder p{font-size:12px;color:#1A73E8;opacity:.6;font-weight:500}
-.float-card{position:absolute;background:#fff;border-radius:14px;padding:10px 14px;box-shadow:0 8px 24px rgba(26,31,54,.12);display:flex;align-items:center;gap:8px;z-index:2}
-.float-card-1{bottom:-12px;left:-16px}
-.float-card-2{top:-10px;right:-8px}
-.fc-icon{font-size:20px}
-.fc-strong{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#1A1F36;line-height:1}
-.fc-small{font-size:11px;color:#6B7280}
-.quality-badge{position:absolute;top:-10px;left:-10px;width:72px;height:72px;background:#1A73E8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(26,115,232,.35);z-index:3}
-.qb-inner{text-align:center;color:#fff}
-.qb-inner b{display:block;font-size:13px;font-weight:800}
-.qb-inner span{display:block;font-size:7.5px;font-weight:700;letter-spacing:.05em;color:#FFD54F}
-
-/* TRACKING BAR */
-.tracking{background:linear-gradient(135deg,#1A73E8,#1557B0);color:#fff;padding:12px 0}
-.tracking-inner{display:flex;align-items:center;gap:12px}
-.tracking-inner p{flex:1;font-size:13px;color:rgba(255,255,255,.9)}
-.tracking-inner p strong{color:#fff}
-.cs-tag{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;background:#FFD54F;color:#6B4800;padding:4px 12px;border-radius:999px;text-transform:uppercase;letter-spacing:.06em}
-
-/* SERVICES */
-.services{padding:56px 0;background:#F7F9FE}
-.section-header{margin-bottom:36px}
-.section-title{font-size:28px;font-weight:700;margin-bottom:8px;line-height:1.2}
-.section-sub{font-size:14px;color:#6B7280;max-width:500px;line-height:1.65}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.scard{background:#fff;border-radius:14px;padding:20px;border:1.5px solid #E4E8F0;transition:all .2s;position:relative;overflow:hidden}
-.scard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#1A73E8,#4A90E2);transform:scaleX(0);transform-origin:left;transition:transform .2s}
-.scard:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(26,31,54,.1)}
-.scard:hover::before{transform:scaleX(1)}
-.scard-accent{background:linear-gradient(135deg,#1A73E8,#1557B0);border-color:transparent}
-.scard-accent h3,.scard-accent p{color:rgba(255,255,255,.95)}
-.scard-icon{width:44px;height:44px;margin-bottom:10px}
-.scard h3{font-size:14px;margin-bottom:5px;color:#1A1F36}
-.scard p{font-size:12px;color:#6B7280;line-height:1.6;margin-bottom:8px}
-.scard-tag{display:inline-block;font-size:11px;font-weight:600;background:#E8F0FE;color:#1A73E8;padding:3px 10px;border-radius:999px}
-.scard-accent .scard-tag{background:rgba(255,255,255,.2);color:#fff}
-
-/* PRICING */
-.pricing{padding:56px 0;background:#fff}
-.pricing-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px}
-.pcard{background:#fff;border:1.5px solid #E4E8F0;border-radius:14px;padding:18px 14px;display:flex;flex-direction:column;gap:10px;transition:all .2s;position:relative}
-.pcard:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(26,31,54,.1)}
-.pcard-featured{background:#1A73E8;border-color:transparent;box-shadow:0 8px 24px rgba(26,115,232,.3)}
-.pcard-featured h3,.pcard-featured .p-amount,.pcard-featured .p-feat li{color:#fff}
-.pcard-featured .p-unit{color:rgba(255,255,255,.7)}
-.pcard-featured .fp-badge{background:#FFD54F;color:#6B4800;font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;position:absolute;top:10px;right:10px}
-.pcard-featured .btn{background:#fff;color:#1A73E8;border:none;font-size:12px;padding:8px 14px}
-.pcard h3{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#1A1F36;margin-top:4px}
-.p-icon{font-size:20px}
-.p-amount{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#1A73E8;display:block;line-height:1}
-.p-unit{font-size:11px;color:#6B7280}
-.p-feat{list-style:none}
-.p-feat li{font-size:11px;color:#6B7280;padding:4px 0;border-bottom:1px solid rgba(228,232,240,.5)}
-.p-feat li:last-child{border-bottom:none}
-.pcard .btn-outline{font-size:12px;padding:8px 14px;background:transparent;color:#1A73E8;border:1.5px solid #1A73E8;border-radius:999px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:600}
-.pnote{display:flex;align-items:flex-start;gap:8px;background:#E8F0FE;border-radius:10px;padding:10px 14px}
-.pnote p{font-size:12px;color:#6B7280}
-
-/* WHY US */
-.why{padding:56px 0;background:#F7F9FE}
-.why-inner{display:grid;grid-template-columns:300px 1fr;gap:48px;align-items:start}
-.why-copy .section-sub{margin-bottom:20px}
-.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.fitem{display:flex;gap:12px;padding:14px;background:#fff;border-radius:12px;border:1.5px solid #E4E8F0;transition:all .2s}
-.fitem:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(26,31,54,.08)}
-.fitem-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
-.fib{background:#E8F0FE;color:#1A73E8}
-.fiy{background:#FFF8E1;color:#F9A825}
-.fig{background:#E8F5E9;color:#388E3C}
-.fit{background:#E0F7FA;color:#0097A7}
-.fitem h4{font-size:13px;margin-bottom:2px;color:#1A1F36;font-family:'Syne',sans-serif}
-.fitem p{font-size:12px;color:#6B7280;line-height:1.55}
-
-/* TESTIMONIALS */
-.testimonials{padding:56px 0;background:#fff}
-.test-grid{display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:14px}
-.tcard{background:#fff;border:1.5px solid #E4E8F0;border-radius:18px;padding:20px;transition:all .2s}
-.tcard:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(26,31,54,.09)}
-.tcard-featured{background:#1A73E8;border-color:transparent}
-.t-stars{font-size:13px;color:#F9A825;letter-spacing:2px;margin-bottom:10px}
-.tcard-featured .t-stars{color:#FFD54F}
-.t-text{font-size:13px;line-height:1.7;color:#6B7280;margin-bottom:14px;font-style:italic}
-.tcard-featured .t-text{color:rgba(255,255,255,.88)}
-.t-author{display:flex;align-items:center;gap:10px}
-.t-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;flex-shrink:0}
-.t-author strong{display:block;font-size:13px;color:#1A1F36;font-family:'Syne',sans-serif}
-.tcard-featured .t-author strong{color:#fff}
-.t-author small{font-size:11px;color:#6B7280}
-.tcard-featured .t-author small{color:rgba(255,255,255,.6)}
-
-/* CONTACT */
-.contact{padding:56px 0;background:#F7F9FE}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-.cblocks{display:flex;flex-direction:column;gap:16px}
-.cblock{display:flex;gap:12px;align-items:flex-start}
-.cblock-icon{width:40px;height:40px;background:#E8F0FE;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.cblock h4{font-size:13px;color:#1A1F36;margin-bottom:2px;font-family:'Syne',sans-serif}
-.cblock a{font-size:13px;color:#1A73E8;text-decoration:none;font-weight:500}
-.cblock p,.cblock small{font-size:12px;color:#6B7280;display:block;margin:0}
-.cform{background:#fff;border-radius:18px;padding:24px;border:1.5px solid #E4E8F0;box-shadow:0 4px 14px rgba(26,31,54,.06)}
-.cform h3{font-size:17px;margin-bottom:16px;color:#1A1F36}
-.fgroup{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
-.fgroup label{font-size:12px;font-weight:600;color:#1A1F36;font-family:'Syne',sans-serif}
-.fgroup input,.fgroup select,.fgroup textarea{padding:9px 12px;border:1.5px solid #E4E8F0;border-radius:10px;background:#F7F9FE;color:#1A1F36;font-size:13px;font-family:'DM Sans',sans-serif;outline:none}
-.fgroup input:focus,.fgroup select:focus,.fgroup textarea:focus{border-color:#1A73E8;background:#fff}
-.fgroup textarea{resize:vertical;height:80px}
-
-/* FOOTER */
-.footer{background:#1A1F36;color:rgba(255,255,255,.7);padding:40px 0 16px}
-.footer-inner{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:32px;margin-bottom:28px}
-.footer-brand p{font-size:13px;color:rgba(255,255,255,.55);margin-top:10px;max-width:220px;line-height:1.6}
-.footer-col h4{font-family:'Syne',sans-serif;font-size:13px;color:#fff;margin-bottom:10px}
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:6px}
-.footer-col ul li a{font-size:13px;color:rgba(255,255,255,.55);text-decoration:none}
-.footer-col p{font-size:13px;color:rgba(255,255,255,.55);margin-bottom:5px}
-.footer-col a{font-size:13px;color:rgba(255,255,255,.55);text-decoration:none;display:block;margin-bottom:5px}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:14px;text-align:center}
-.footer-bottom p{font-size:12px;color:rgba(255,255,255,.35)}
-
-/* WA FLOAT */
-.wa-float{position:fixed;bottom:20px;right:16px;display:flex;align-items:center;gap:7px;background:#25D366;color:#fff;padding:11px 18px 11px 14px;border-radius:999px;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;box-shadow:0 4px 18px rgba(37,211,102,.45);z-index:100;text-decoration:none;animation:pulseWA 3s ease-in-out infinite}
-@keyframes pulseWA{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.4)}50%{box-shadow:0 4px 26px rgba(37,211,102,.65),0 0 0 7px rgba(37,211,102,.08)}}
-
-/* SVG icons inline */
-svg{overflow:visible}
-</style>
-
-<div class="preview">
-
-<!-- NAV -->
-<nav class="nav">
-  <div class="nav-inner">
-    <div class="logo"><span>◈</span> Logic <strong style="color:#1A73E8">Laundry</strong></div>
-    <div class="nav-links">
-      <a href="#">Services</a>
-      <a href="#">Pricing</a>
-      <a href="#">Why Us</a>
-      <a href="#">Contact</a>
-    </div>
-    <a href="#" class="btn btn-wa" style="font-size:12px;padding:9px 16px">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      WhatsApp
+<!-- ═══ NAVIGATION ═══ -->
+<nav class="nav" id="mainNav">
+  <div class="nav__inner container">
+    <a href="#" class="nav__logo">
+      <div class="nav__logo-icon">
+        <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" stroke="#FFD54F" stroke-width="2"/><path d="M10 22c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#FFD54F" stroke-width="2.2" stroke-linecap="round"/><circle cx="18" cy="12" r="2.5" fill="#FFD54F"/></svg>
+      </div>
+      <span>Logic <strong>Laundry</strong></span>
     </a>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#why-us">Why Us</a></li>
+      <li><a href="#track">Track Order</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav__cta">
+      <a href="#quote" class="btn btn--accent nav__quote-btn">Get Free Quote</a>
+      <a href="https://wa.me/254715617654" class="btn btn--whatsapp" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+      <button class="nav__hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="container">
-    <div class="hero-inner">
-      <div class="hero-copy">
-        <div class="badge">⚡ Free Pickup &amp; Delivery</div>
-        <h1 class="hero-headline">Laundry Made <span>Simple.</span></h1>
-        <p class="hero-sub">Laundry shouldn't stress you. We pick it up, clean it, fold it, and bring it back <em>fresher than your weekend plans.</em></p>
-        <div class="pill">
-          <span class="pill-label">Starting from</span>
-          <span class="pill-price">KSH 80 <small>/ kilo</small></span>
-        </div>
-        <div class="hero-actions">
-          <a href="#" class="btn btn-primary">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-            Call Now
-          </a>
-          <a href="#" class="btn btn-secondary">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Book Pickup
-          </a>
-        </div>
-        <div class="hero-trust">
-          <span>✓ Same-day service</span>
-          <span>✓ Eco-friendly detergents</span>
-          <span>✓ 48-hr freshness guarantee</span>
-        </div>
+<!-- ═══ HERO SECTION ═══ -->
+<section class="hero" id="hero">
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <div class="hero__badge-row">
+        <span class="badge badge--accent">⚡ Free Pickup &amp; Delivery</span>
+        <span class="badge badge--outline">📍 Ongata Rongai</span>
       </div>
-      <div class="hero-visual">
-        <div class="hero-img-frame">
-          <div class="hero-img-placeholder">
-            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1A73E8" stroke-width="1.2" opacity=".4"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            <p>laundry1.jpeg</p>
-          </div>
-          <div class="quality-badge">
-            <div class="qb-inner"><b>48HR</b><span>FRESHNESS</span><span style="font-size:10px">★★★★★</span></div>
-          </div>
-        </div>
-        <div class="float-card float-card-1">
-          <span class="fc-icon">🧺</span>
-          <div><div class="fc-strong">250+</div><div class="fc-small">Happy Customers</div></div>
-        </div>
-        <div class="float-card float-card-2">
-          <span class="fc-icon">⭐</span>
-          <div><div class="fc-strong">4.9 / 5</div><div class="fc-small">Average Rating</div></div>
-        </div>
+      <h1 class="hero__headline">Get Your<br/><span class="highlight">Free Quote</span><br/>Today.</h1>
+      <p class="hero__swahili">"<em>Nguo zako, sisi tunashughulikia.</em>"</p>
+      <p class="hero__swahili-trans">Your clothes, we handle them — with care.</p>
+      <p class="hero__sub">Laundry shouldn't stress you. We pick it up, clean it, fold it, and bring it back <strong>fresher than your weekend plans.</strong></p>
+      <div class="hero__pricing-pill">
+        <span class="pill-label">Starting from</span>
+        <span class="pill-price">KSH 80 <small>/ kilo</small></span>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- TRACKING BAR -->
-<div class="tracking">
-  <div class="container">
-    <div class="tracking-inner">
-      <span style="font-size:18px">📍</span>
-      <p><strong>Track Your Laundry Status</strong> — Real-time order tracking launching soon.</p>
-      <span class="cs-tag">Coming Soon</span>
-    </div>
-  </div>
-</div>
-
-<!-- SERVICES -->
-<section class="services">
-  <div class="container">
-    <div class="section-header">
-      <div class="tag">What We Do</div>
-      <h2 class="section-title">Every Fabric, Perfectly Handled.</h2>
-      <p class="section-sub">From your favourite shirt to your boardroom curtains — we treat every item like it's precious.</p>
-    </div>
-    <div class="services-grid">
-      <div class="scard">
-        <div class="scard-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="#E8F0FE"/><path d="M14 30c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#1A73E8" stroke-width="2.5" stroke-linecap="round"/><path d="M10 34h28" stroke="#1A73E8" stroke-width="2.5" stroke-linecap="round"/></svg></div>
-        <h3>Washing</h3>
-        <p>Machine or hand-wash using premium detergents. Sorted by colour, fabric, and care labels — always.</p>
-        <span class="scard-tag">From KSH 80/kg</span>
-      </div>
-      <div class="scard">
-        <div class="scard-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="#FFF8E1"/><rect x="14" y="18" width="20" height="14" rx="3" fill="#FFD54F" opacity=".4"/><path d="M18 22h12M18 26h8" stroke="#F9A825" stroke-width="2.5" stroke-linecap="round"/></svg></div>
-        <h3>Folding</h3>
-        <p>Every item folded with military precision. Your wardrobe will finally look like the ones on Pinterest.</p>
-        <span class="scard-tag">Included in wash</span>
-      </div>
-      <div class="scard">
-        <div class="scard-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="#FCE4EC"/><path d="M16 32h16l-2-12H18L16 32z" stroke="#E91E63" stroke-width="2" fill="#F48FB1" opacity=".3"/><ellipse cx="24" cy="20" rx="6" ry="3" stroke="#E91E63" stroke-width="2"/></svg></div>
-        <h3>Ironing</h3>
-        <p>Crisp, wrinkle-free results for shirts, trousers, and everything in between. Show up sharp, every day.</p>
-        <span class="scard-tag">KSH 30/item</span>
-      </div>
-      <div class="scard">
-        <div class="scard-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="#E8F5E9"/><path d="M18 28c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="#388E3C" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="18" r="2.5" fill="#4CAF50"/></svg></div>
-        <h3>Stain Removal</h3>
-        <p>Red wine? Muddy kit? Mystery stain? We've seen it all. Our stain-busting treatment handles what your machine can't.</p>
-        <span class="scard-tag">Pre-treatment included</span>
-      </div>
-      <div class="scard">
-        <div class="scard-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="#EDE7F6"/><rect x="13" y="15" width="22" height="18" rx="4" stroke="#7B1FA2" stroke-width="2.5" fill="#CE93D8" opacity=".3"/><path d="M17 19h14M17 23h14" stroke="#7B1FA2" stroke-width="2" stroke-linecap="round"/></svg></div>
-        <h3>Bedding &amp; Curtains</h3>
-        <p>Duvets, pillowcases, heavy curtains. Deep-cleaned and dried properly — because you deserve good sleep.</p>
-        <span class="scard-tag">From KSH 500/set</span>
-      </div>
-      <div class="scard scard-accent">
-        <div class="scard-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(255,255,255,.15)"/><rect x="14" y="17" width="20" height="14" rx="2" fill="rgba(255,255,255,.25)"/><path d="M19 21h10M19 25h7" stroke="white" stroke-width="2.5" stroke-linecap="round"/><circle cx="32" cy="16" r="4" fill="#FFD54F"/></svg></div>
-        <h3>Corporate Laundry</h3>
-        <p>Hotels, restaurants, salons — bulk loads with consistency, discretion, and dedicated scheduling.</p>
-        <span class="scard-tag">Custom packages ↗</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section class="pricing">
-  <div class="container">
-    <div class="section-header" style="text-align:center">
-      <div class="tag">Transparent Pricing</div>
-      <h2 class="section-title">No Hidden Costs. Ever.</h2>
-      <p class="section-sub" style="margin:0 auto">What you see is what you pay. Honest pricing, as much as we believe in clean laundry.</p>
-    </div>
-    <div class="pricing-grid">
-      <div class="pcard">
-        <span class="p-icon">⚖️</span>
-        <h3>Per Kilo</h3>
-        <span class="p-amount">KSH 80</span><span class="p-unit">/ kilo</span>
-        <ul class="p-feat"><li>✓ Wash + dry</li><li>✓ Sorted by colour</li><li>✓ Eco detergents</li><li>✓ Free pickup</li></ul>
-        <button class="pcard .btn-outline" style="background:transparent;color:#1A73E8;border:1.5px solid #1A73E8;border-radius:999px;padding:8px 14px;font-family:'Syne',sans-serif;font-weight:600;font-size:12px;cursor:pointer">Book Now</button>
-      </div>
-      <div class="pcard pcard-featured">
-        <div class="fp-badge">Popular</div>
-        <span class="p-icon">⚡</span>
-        <h3>Express</h3>
-        <span class="p-amount">KSH 120</span><span class="p-unit">/ kilo</span>
-        <ul class="p-feat"><li>✓ Ready in 6 hours</li><li>✓ Priority handling</li><li>✓ Same-day delivery</li><li>✓ SMS updates</li></ul>
-        <button class="btn" style="background:#fff;color:#1A73E8;border:none;font-size:12px;padding:9px 14px;border-radius:999px;font-family:'Syne',sans-serif;font-weight:600;cursor:pointer">Book Express</button>
-      </div>
-      <div class="pcard">
-        <span class="p-icon">🛏️</span>
-        <h3>Bedding Set</h3>
-        <span class="p-amount">KSH 500</span><span class="p-unit">/ set</span>
-        <ul class="p-feat"><li>✓ Sheets + pillowcases</li><li>✓ Duvet cover</li><li>✓ Deep clean</li><li>✓ Tumble-dried</li></ul>
-        <button class="pcard .btn-outline" style="background:transparent;color:#1A73E8;border:1.5px solid #1A73E8;border-radius:999px;padding:8px 14px;font-family:'Syne',sans-serif;font-weight:600;font-size:12px;cursor:pointer">Book Now</button>
-      </div>
-      <div class="pcard">
-        <span class="p-icon">🪟</span>
-        <h3>Curtains</h3>
-        <span class="p-amount">KSH 300</span><span class="p-unit">/ pair</span>
-        <ul class="p-feat"><li>✓ Machine washed</li><li>✓ Stain treatment</li><li>✓ Pressed</li><li>✓ 72-hr turnaround</li></ul>
-        <button class="pcard .btn-outline" style="background:transparent;color:#1A73E8;border:1.5px solid #1A73E8;border-radius:999px;padding:8px 14px;font-family:'Syne',sans-serif;font-weight:600;font-size:12px;cursor:pointer">Book Now</button>
-      </div>
-      <div class="pcard" style="background:linear-gradient(135deg,#F7F9FE,#E8F0FE)">
-        <span class="p-icon">🏢</span>
-        <h3>Corporate</h3>
-        <span class="p-amount" style="font-size:18px">Custom</span><span class="p-unit">pricing</span>
-        <ul class="p-feat"><li>✓ Hotels &amp; restaurants</li><li>✓ Weekly scheduling</li><li>✓ Volume discounts</li><li>✓ Dedicated mgr</li></ul>
-        <button class="pcard .btn-outline" style="background:transparent;color:#1A73E8;border:1.5px solid #1A73E8;border-radius:999px;padding:8px 14px;font-family:'Syne',sans-serif;font-weight:600;font-size:12px;cursor:pointer">Call Us</button>
-      </div>
-    </div>
-    <div class="pnote">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1A73E8" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      <p>Minimum order: 3kg. Free pickup &amp; delivery on all orders above KSH 500. Ironing priced separately at KSH 30/item.</p>
-    </div>
-  </div>
-</section>
-
-<!-- WHY US -->
-<section class="why">
-  <div class="container">
-    <div class="why-inner">
-      <div class="why-copy">
-        <div class="tag">Why Logic Laundry?</div>
-        <h2 class="section-title">We Take the "Chore" Out of Laundry.</h2>
-        <p class="section-sub">Other laundries just wash. We care about the entire experience — pickup to delivery.</p>
-        <a href="#" class="btn btn-primary" style="font-size:13px;padding:10px 20px">Try Us Risk-Free →</a>
-      </div>
-      <div class="why-grid">
-        <div class="fitem"><div class="fitem-icon fib">⏱</div><div><h4>Fast Turnaround</h4><p>Standard: 24–48 hrs. Express: same day.</p></div></div>
-        <div class="fitem"><div class="fitem-icon fiy">🚚</div><div><h4>Free Pickup &amp; Delivery</h4><p>Orders above KSH 500 picked up free.</p></div></div>
-        <div class="fitem"><div class="fitem-icon fig">🛡</div><div><h4>Professional Handling</h4><p>Trained staff, proper sorting, care-label compliance.</p></div></div>
-        <div class="fitem"><div class="fitem-icon fit">❤</div><div><h4>Satisfaction Guarantee</h4><p>Not happy? We'll re-clean it. Free. No drama.</p></div></div>
-        <div class="fitem"><div class="fitem-icon fig">🌿</div><div><h4>Eco-Friendly Detergents</h4><p>Biodegradable and skin-safe — kind to everything.</p></div></div>
-        <div class="fitem"><div class="fitem-icon fiy">💰</div><div><h4>Affordable Pricing</h4><p>Premium service, not premium-only prices.</p></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials">
-  <div class="container">
-    <div class="section-header" style="text-align:center">
-      <div class="tag">Happy Customers</div>
-      <h2 class="section-title">Don't Just Take Our Word For It.</h2>
-    </div>
-    <div class="test-grid">
-      <div class="tcard">
-        <div class="t-stars">★★★★★</div>
-        <p class="t-text">"I used to dread laundry day. Now I just send a WhatsApp and everything comes back folded better than I ever managed."</p>
-        <div class="t-author">
-          <div class="t-avatar" style="background:#E8F0FE;color:#1A73E8">WK</div>
-          <div><strong>Wanjiru Kamau</strong><small>Kasarani, Nairobi</small></div>
-        </div>
-      </div>
-      <div class="tcard tcard-featured">
-        <div class="t-stars">★★★★★</div>
-        <p class="t-text">"As a busy med student with zero time, this service is literally a lifesaver. The stain removal on my white coat? Miraculous."</p>
-        <div class="t-author">
-          <div class="t-avatar" style="background:rgba(255,255,255,.2);color:#fff">BM</div>
-          <div><strong>Brian Mutua</strong><small>Westlands, Nairobi</small></div>
-        </div>
-      </div>
-      <div class="tcard">
-        <div class="t-stars">★★★★★</div>
-        <p class="t-text">"Our salon towels, every week. Forty towels, always returned smelling fresh, folded neatly. Clients have actually commented on them!"</p>
-        <div class="t-author">
-          <div class="t-avatar" style="background:#E8F5E9;color:#388E3C">AN</div>
-          <div><strong>Aisha Ndungu</strong><small>Salon Owner, Kilimani</small></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="contact">
-  <div class="container">
-    <div class="section-header" style="text-align:center">
-      <div class="tag">Get in Touch</div>
-      <h2 class="section-title">We're Always a Message Away.</h2>
-    </div>
-    <div class="contact-grid">
-      <div class="cblocks">
-        <div class="cblock"><div class="cblock-icon">📞</div><div><h4>Call Us</h4><a href="#">+254 700 000 000</a><small>Mon–Sat, 7am–8pm</small></div></div>
-        <div class="cblock"><div class="cblock-icon">💬</div><div><h4>WhatsApp</h4><a href="#">Chat on WhatsApp</a><small>Fastest response guaranteed</small></div></div>
-        <div class="cblock"><div class="cblock-icon">🕐</div><div><h4>Hours</h4><p>Mon–Sat: 7:00 AM – 8:00 PM</p><p>Sunday: 9:00 AM – 4:00 PM</p></div></div>
-        <div class="cblock"><div class="cblock-icon">📍</div><div><h4>Location</h4><p>Nairobi, Kenya</p><small>Serving all major estates</small></div></div>
-        <a href="#" class="btn btn-wa" style="font-size:13px;justify-content:center;padding:12px 20px">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Quick Order on WhatsApp
+      <div class="hero__actions">
+        <a href="#quote" class="btn btn--primary btn--lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          Get Free Quote
+        </a>
+        <a href="tel:+254715617654" class="btn btn--secondary btn--lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          Call Now
         </a>
       </div>
-      <div class="cform">
-        <h3>Send Us a Message</h3>
-        <div class="fgroup"><label>Your Name</label><input type="text" placeholder="Full name"/></div>
-        <div class="fgroup"><label>Phone Number</label><input type="tel" placeholder="07XX XXX XXX"/></div>
-        <div class="fgroup"><label>Service Interested In</label><select><option>Select a service</option><option>Regular Washing</option><option>Express Service</option><option>Bedding &amp; Curtains</option><option>Corporate Package</option></select></div>
-        <div class="fgroup"><label>Message</label><textarea placeholder="Tell us how we can help..."></textarea></div>
-        <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:14px">Send Message →</button>
+      <div class="hero__trust">
+        <span>✓ Same-day express</span>
+        <span>✓ GPS-tracked pickup</span>
+        <span>✓ Eco-friendly</span>
+        <span>✓ 48-hr guarantee</span>
+      </div>
+    </div>
+    <div class="hero__visual">
+      <!-- Hero image carousel using real brand images -->
+      <div class="hero__carousel" id="heroCarousel">
+        <div class="hero__slide active">
+          <img src="img1.jpeg" alt="Logic Laundry – If Laundry Could Talk (Blue)" class="hero__img"/>
+        </div>
+        <div class="hero__slide">
+          <img src="img2.jpeg" alt="Logic Laundry – If Laundry Could Talk (White)" class="hero__img"/>
+        </div>
+        <div class="hero__slide">
+          <img src="img3.jpeg" alt="Logic Laundry – Ukiendelea hivi" class="hero__img"/>
+        </div>
+        <div class="hero__carousel-dots">
+          <button class="dot active" data-slide="0" aria-label="Slide 1"></button>
+          <button class="dot" data-slide="1" aria-label="Slide 2"></button>
+          <button class="dot" data-slide="2" aria-label="Slide 3"></button>
+        </div>
+      </div>
+      <!-- Floating cards -->
+      <div class="hero__float-card hero__float-card--1">
+        <span>🧺</span><div><strong>250+</strong><small>Happy Customers</small></div>
+      </div>
+      <div class="hero__float-card hero__float-card--2">
+        <span>⭐</span><div><strong>4.9/5</strong><small>Avg Rating</small></div>
+      </div>
+      <div class="quality-badge">
+        <div class="quality-badge__inner"><span>48HR</span><span>FRESH</span><span>★★★★★</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer">
+<!-- ═══ FREE QUOTE + GPS ORDER WIDGET ═══ -->
+<section class="quote-section section--alt" id="quote">
   <div class="container">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <div style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:#fff;display:flex;align-items:center;gap:7px"><span style="color:#FFD54F">◈</span> Logic <strong style="color:#FFD54F">Laundry</strong></div>
-        <p>Nairobi's most trusted laundry service. Professional, reliable, always on time.</p>
-        <p style="font-size:12px;color:rgba(255,255,255,.4);margin-top:8px">🌿 Proud users of eco-friendly detergents.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul><li><a href="#">Services</a></li><li><a href="#">Pricing</a></li><li><a href="#">Why Us</a></li><li><a href="#">Book Pickup</a></li></ul>
-      </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul><li><a href="#">Washing &amp; Folding</a></li><li><a href="#">Ironing</a></li><li><a href="#">Bedding &amp; Curtains</a></li><li><a href="#">Corporate</a></li></ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <a href="#">+254 700 000 000</a>
-        <a href="#">WhatsApp Us</a>
-        <p>Mon–Sat: 7am – 8pm</p>
-        <p>Nairobi, Kenya</p>
+    <div class="section-header section-header--centered">
+      <span class="section-tag">Book in 60 Seconds</span>
+      <h2 class="section-title">Get Your Free Quote Today</h2>
+      <p class="section-sub">"<em>Piga simu moja, tutakuja kwako</em>" — One call, we come to you. Share your location and we'll calculate your pickup route instantly.</p>
+    </div>
+    <div class="quote-card">
+      <form class="quote-form" id="quoteForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="q-name">Your Name</label>
+            <input type="text" id="q-name" name="name" placeholder="e.g. Wanjiru Kamau"/>
+          </div>
+          <div class="form-group">
+            <label for="q-phone">Phone / WhatsApp</label>
+            <input type="tel" id="q-phone" name="phone" placeholder="07XX XXX XXX"/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="q-date">Pickup Date</label>
+            <input type="date" id="q-date" name="date"/>
+          </div>
+          <div class="form-group">
+            <label for="q-time">Preferred Time</label>
+            <select id="q-time" name="time">
+              <option value="">Choose a slot</option>
+              <option>7:00 AM – 9:00 AM</option>
+              <option>9:00 AM – 11:00 AM</option>
+              <option>11:00 AM – 1:00 PM</option>
+              <option>1:00 PM – 3:00 PM</option>
+              <option>3:00 PM – 5:00 PM</option>
+              <option>5:00 PM – 7:00 PM</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="q-service">Service Needed</label>
+          <select id="q-service" name="service">
+            <option value="">Select a service</option>
+            <option>Regular Wash (per kg)</option>
+            <option>Express Service (6 hrs)</option>
+            <option>Bedding &amp; Curtains</option>
+            <option>Ironing Only</option>
+            <option>Stain Removal</option>
+            <option>Corporate Package</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="q-weight">Estimated Weight (kg)</label>
+          <div class="weight-slider-wrap">
+            <input type="range" id="q-weight" name="weight" min="3" max="30" value="5" class="weight-slider"/>
+            <div class="weight-display">
+              <span id="weightVal">5</span> kg
+              <span class="weight-quote">≈ <strong id="priceEst">KSH 400</strong></span>
+            </div>
+          </div>
+        </div>
+        <!-- GPS Location Capture -->
+        <div class="location-block" id="locationBlock">
+          <div class="location-block__header">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 010 16c-4.97 0-8-3.58-8-8a8 8 0 018-8z"/><path d="M12 18v4"/></svg>
+            <strong>Share Your Pickup Location</strong>
+            <span class="loc-tag">Precise GPS Pickup</span>
+          </div>
+          <p class="location-block__sub">We use your location to calculate route &amp; transport cost. Your data stays private.</p>
+          <div class="location-status" id="locationStatus">
+            <div class="loc-idle" id="locIdle">
+              <button type="button" class="btn btn--locate" id="locateBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="8" opacity=".3"/></svg>
+                Detect My Location
+              </button>
+              <span class="loc-or">or</span>
+              <input type="text" id="q-address" name="address" placeholder="Type your estate / street address..." class="loc-input"/>
+            </div>
+            <div class="loc-loading" id="locLoading" hidden>
+              <div class="loc-spinner"></div>
+              <span>Getting your precise location...</span>
+            </div>
+            <div class="loc-success" id="locSuccess" hidden>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34A853" stroke-width="2.5"><path d="M9 11l3 3L22 4"/><circle cx="12" cy="12" r="10" stroke="#34A853" stroke-width="1.5" opacity=".3"/></svg>
+              <span id="locSuccessText">Location captured!</span>
+              <button type="button" id="resetLoc" class="loc-reset">Change</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="q-notes">Extra Notes (optional)</label>
+          <textarea id="q-notes" name="notes" rows="2" placeholder="e.g. 3 school uniforms, 1 duvet, white shirts..."></textarea>
+        </div>
+        <div class="quote-summary" id="quoteSummary" hidden>
+          <h4>Your Quote Summary</h4>
+          <div class="qs-row"><span>Estimated weight:</span><strong id="qs-weight">—</strong></div>
+          <div class="qs-row"><span>Service:</span><strong id="qs-service">—</strong></div>
+          <div class="qs-row"><span>Pickup:</span><strong id="qs-date">—</strong></div>
+          <div class="qs-row qs-total"><span>Estimated Cost:</span><strong id="qs-total">—</strong></div>
+        </div>
+        <button type="submit" class="btn btn--primary btn--full">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+          Confirm Order via WhatsApp
+        </button>
+      </form>
+      <div class="quote-aside">
+        <div class="qa-header">
+          <h3>Why Book Online?</h3>
+        </div>
+        <ul class="qa-list">
+          <li><span class="qa-icon">📍</span><div><strong>GPS Pickup</strong><p>We track your location so our rider comes directly to you — no confusion, no wasted trips.</p></div></li>
+          <li><span class="qa-icon">💰</span><div><strong>Instant Quote</strong><p>Slide to your estimated weight and see the price update in real-time. No surprises.</p></div></li>
+          <li><span class="qa-icon">⚡</span><div><strong>24-48 Hr Turnaround</strong><p>Standard wash back within 48 hrs. Express ready same day. We keep our word.</p></div></li>
+          <li><span class="qa-icon">🌿</span><div><strong>Eco Detergents</strong><p>Biodegradable, skin-safe, planet-friendly. Clean clothes, clean conscience.</p></div></li>
+        </ul>
+        <div class="qa-swahili">
+          <p>"<em>Tunajali nguo zako kama zetu wenyewe.</em>"</p>
+          <small>We care for your clothes like our own.</small>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 Logic Laundry Services. All rights reserved. Made with ♥ in Nairobi.</p>
-      <p style="margin-top:4px">Because clean clothes change your whole mood.</p>
+  </div>
+</section>
+
+<!-- ═══ BRAND IMAGE GALLERY ═══ -->
+<section class="gallery section" id="gallery">
+  <div class="container">
+    <div class="section-header section-header--centered">
+      <span class="section-tag">Our Brand</span>
+      <h2 class="section-title">We Don't Just Wash Clothes.<br/>We Tell a Story.</h2>
+    </div>
+    <div class="gallery__grid">
+      <div class="gallery-item gallery-item--large">
+        <img src="img1.jpeg" alt="Logic Laundry – If Laundry Could Talk campaign"/>
+        <div class="gallery-item__overlay">
+          <p>"If laundry could talk… good thing it can't. Bring it to us."</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="img2.jpeg" alt="Logic Laundry – White edition"/>
+        <div class="gallery-item__overlay">
+          <p>Free Pickup &amp; Delivery. KSH 80/kg.</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="img3.jpeg" alt="Logic Laundry – Swahili campaign"/>
+        <div class="gallery-item__overlay">
+          <p>"Ukiendelea hivi, nguo zitakuitisha meeting!"</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section class="services section--alt" id="services">
+  <div class="container">
+    <div class="section-header section-header--centered">
+      <span class="section-tag">What We Do</span>
+      <h2 class="section-title">Every Fabric,<br/>Perfectly Handled.</h2>
+      <p class="section-sub">"<em>Hakuna nguo ngumu sana kwetu</em>" — No clothes too tough for us.</p>
+    </div>
+    <div class="services__grid">
+      <div class="service-card fade-in">
+        <div class="service-card__icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="#E8F0FE"/><path d="M14 30c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#1A73E8" stroke-width="2.5" stroke-linecap="round"/><path d="M10 34h28" stroke="#1A73E8" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+        <h3>Washing</h3>
+        <p>Machine or hand-wash, sorted by colour and fabric. Eco detergents, always.</p>
+        <span class="service-card__tag">From KSH 80/kg</span>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-card__icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="#FFF8E1"/><rect x="14" y="18" width="20" height="14" rx="3" fill="#FFD54F" opacity=".4"/><path d="M18 22h12M18 26h8" stroke="#F9A825" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+        <h3>Folding</h3>
+        <p>Military-precision folding. Your wardrobe will finally look like the ones on Pinterest.</p>
+        <span class="service-card__tag">Included in wash</span>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-card__icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="#FCE4EC"/><path d="M16 32h16l-2-12H18L16 32z" stroke="#E91E63" stroke-width="2" fill="#F48FB1" opacity=".3"/><ellipse cx="24" cy="20" rx="6" ry="3" stroke="#E91E63" stroke-width="2"/></svg></div>
+        <h3>Ironing</h3>
+        <p>Crisp, wrinkle-free every time. Show up sharp — every single day.</p>
+        <span class="service-card__tag">KSH 30/item</span>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-card__icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="#E8F5E9"/><path d="M18 28c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="#388E3C" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="18" r="2.5" fill="#4CAF50"/></svg></div>
+        <h3>Stain Removal</h3>
+        <p>Red wine? Muddy kit? Mystery stain? We've seen them all. We beat them all.</p>
+        <span class="service-card__tag">Pre-treatment included</span>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-card__icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="#EDE7F6"/><rect x="13" y="15" width="22" height="18" rx="4" stroke="#7B1FA2" stroke-width="2.5" fill="#CE93D8" opacity=".3"/><path d="M17 19h14M17 23h14" stroke="#7B1FA2" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Bedding &amp; Curtains</h3>
+        <p>Duvets, pillowcases, heavy curtains — deep-cleaned. Because you deserve good sleep.</p>
+        <span class="service-card__tag">From KSH 500/set</span>
+      </div>
+      <div class="service-card service-card--accent fade-in">
+        <div class="service-card__icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(255,255,255,.15)"/><rect x="14" y="17" width="20" height="14" rx="2" fill="rgba(255,255,255,.2)"/><path d="M19 21h10M19 25h7" stroke="white" stroke-width="2.5" stroke-linecap="round"/><circle cx="32" cy="16" r="4" fill="#FFD54F"/><path d="M31 16l1 1 2-2" stroke="#1A1F36" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <h3>Corporate Laundry</h3>
+        <p>Hotels, restaurants, salons. Bulk loads with consistency and dedicated scheduling.</p>
+        <span class="service-card__tag">Custom packages ↗</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section class="pricing section" id="pricing">
+  <div class="container">
+    <div class="section-header section-header--centered">
+      <span class="section-tag">Transparent Pricing</span>
+      <h2 class="section-title">No Hidden Costs. Ever.</h2>
+      <p class="section-sub">"<em>Bei yetu ni wazi kama nguo safi</em>" — Our prices are clear as clean clothes.</p>
+    </div>
+    <div class="pricing__grid">
+      <div class="pricing-card fade-in">
+        <div class="pricing-card__header"><span>⚖️</span><h3>Per Kilo</h3></div>
+        <div class="pricing-card__price"><span class="price-amount">KSH 80</span><span class="price-unit">/ kilo</span></div>
+        <ul class="pricing-card__features"><li>✓ Wash + dry</li><li>✓ Sorted by colour</li><li>✓ Eco detergents</li><li>✓ Free pickup &amp; delivery</li><li>✓ Folding included</li></ul>
+        <a href="#quote" class="btn btn--outline">Book Now</a>
+      </div>
+      <div class="pricing-card pricing-card--featured fade-in">
+        <div class="pricing-card__badge">Most Popular</div>
+        <div class="pricing-card__header"><span>⚡</span><h3>Express Service</h3></div>
+        <div class="pricing-card__price"><span class="price-amount">KSH 120</span><span class="price-unit">/ kilo</span></div>
+        <ul class="pricing-card__features"><li>✓ Ready in <strong>6 hours</strong></li><li>✓ Priority handling</li><li>✓ Same-day delivery</li><li>✓ Premium detergents</li><li>✓ SMS/WhatsApp updates</li></ul>
+        <a href="#quote" class="btn btn--primary">Book Express</a>
+      </div>
+      <div class="pricing-card fade-in">
+        <div class="pricing-card__header"><span>🛏️</span><h3>Bedding Set</h3></div>
+        <div class="pricing-card__price"><span class="price-amount">KSH 500</span><span class="price-unit">/ set</span></div>
+        <ul class="pricing-card__features"><li>✓ Sheets + pillowcases</li><li>✓ Duvet cover</li><li>✓ Deep clean cycle</li><li>✓ Tumble-dried</li><li>✓ Neatly packaged</li></ul>
+        <a href="#quote" class="btn btn--outline">Book Now</a>
+      </div>
+      <div class="pricing-card fade-in">
+        <div class="pricing-card__header"><span>🪟</span><h3>Curtains</h3></div>
+        <div class="pricing-card__price"><span class="price-amount">KSH 300</span><span class="price-unit">/ pair</span></div>
+        <ul class="pricing-card__features"><li>✓ Machine washed</li><li>✓ Stain pre-treatment</li><li>✓ Pressed &amp; hung</li><li>✓ Up to 2.5m drop</li><li>✓ 72-hr turnaround</li></ul>
+        <a href="#quote" class="btn btn--outline">Book Now</a>
+      </div>
+      <div class="pricing-card pricing-card--corporate fade-in">
+        <div class="pricing-card__header"><span>🏢</span><h3>Corporate</h3></div>
+        <div class="pricing-card__price"><span class="price-amount" style="font-size:1.6rem">Custom</span><span class="price-unit">pricing</span></div>
+        <ul class="pricing-card__features"><li>✓ Hotels &amp; restaurants</li><li>✓ Salons &amp; clinics</li><li>✓ Weekly scheduling</li><li>✓ Dedicated account mgr</li><li>✓ Volume discounts</li></ul>
+        <a href="tel:+254715617654" class="btn btn--outline">Call to Discuss</a>
+      </div>
+    </div>
+    <div class="pricing-note">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A73E8" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p>Minimum order: 3kg. Free pickup &amp; delivery on all orders above KSH 500. Ironing priced separately at KSH 30 per item.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHY CHOOSE US ═══ -->
+<section class="why-us section--alt" id="why-us">
+  <div class="container">
+    <div class="why-us__inner">
+      <div class="why-us__copy fade-in">
+        <span class="section-tag">Why Logic Laundry?</span>
+        <h2 class="section-title">We Take the "Chore"<br/>Out of Laundry.</h2>
+        <p class="section-sub">"<em>Wewe pumzika, sisi tunafua</em>" — You rest, we wash. Other laundries just clean. We care about the whole experience.</p>
+        <a href="#quote" class="btn btn--primary">Try Us Risk-Free →</a>
+      </div>
+      <div class="why-us__features">
+        <div class="feature-item fade-in"><div class="feature-item__icon fi--blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><h4>Fast Turnaround</h4><p>Standard: 24–48 hrs. Express: same day. We respect your time like our own.</p></div></div>
+        <div class="feature-item fade-in"><div class="feature-item__icon fi--yellow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></div><div><h4>GPS Pickup Tracking</h4><p>We capture your precise location so our rider finds you fast. No confusion, no delays.</p></div></div>
+        <div class="feature-item fade-in"><div class="feature-item__icon fi--green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><h4>Professional Handling</h4><p>Trained staff, proper sorting, care-label compliance on every item.</p></div></div>
+        <div class="feature-item fade-in"><div class="feature-item__icon fi--teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><div><h4>Satisfaction Guarantee</h4><p>Not happy? We re-clean for free. No drama.</p></div></div>
+        <div class="feature-item fade-in"><div class="feature-item__icon fi--green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm0 0v20M2 12h20"/></svg></div><div><h4>Eco-Friendly Detergents</h4><p>Biodegradable and skin-safe — kind to your clothes and the planet.</p></div></div>
+        <div class="feature-item fade-in"><div class="feature-item__icon fi--yellow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><div><h4>Affordable Pricing</h4><p>KSH 80/kg — premium service at honest Ongata Rongai prices.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ORDER TRACKING ═══ -->
+<section class="tracking-section section" id="track">
+  <div class="container">
+    <div class="section-header section-header--centered">
+      <span class="section-tag">Track Your Order</span>
+      <h2 class="section-title">Know Where Your<br/>Clothes Are. Always.</h2>
+      <p class="section-sub">"<em>Nguo zako ziko wapi? Tutakuambia</em>" — Where are your clothes? We'll tell you.</p>
+    </div>
+    <div class="tracking-card">
+      <div class="tracking-card__visual">
+        <div class="tracking-steps">
+          <div class="tstep tstep--done"><div class="tstep__icon">📦</div><div class="tstep__label">Order Placed</div></div>
+          <div class="tstep-line tstep-line--done"></div>
+          <div class="tstep tstep--done"><div class="tstep__icon">🚴</div><div class="tstep__label">Pickup En Route</div></div>
+          <div class="tstep-line tstep-line--active"></div>
+          <div class="tstep tstep--active"><div class="tstep__icon">🫧</div><div class="tstep__label">Being Washed</div></div>
+          <div class="tstep-line"></div>
+          <div class="tstep"><div class="tstep__icon">👕</div><div class="tstep__label">Ready</div></div>
+          <div class="tstep-line"></div>
+          <div class="tstep"><div class="tstep__icon">🏠</div><div class="tstep__label">Delivered</div></div>
+        </div>
+        <div class="tracking-pulse">
+          <div class="pulse-ring"></div>
+          <div class="pulse-dot">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="tracking-card__info">
+        <div class="track-coming-soon">
+          <div class="tcs-badge">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A73E8" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            <strong>Real-Time Tracking</strong>
+          </div>
+          <p>Full GPS order tracking is launching soon. You'll be able to see exactly where your rider is, when your wash started, and get notified the moment your order is ready for delivery.</p>
+          <div class="tcs-features">
+            <span>📍 Live rider location</span>
+            <span>📱 WhatsApp status updates</span>
+            <span>⏱ ETA countdown</span>
+            <span>✅ Delivery confirmation</span>
+          </div>
+          <div class="tcs-notify">
+            <input type="email" id="notify-email" placeholder="Your email — notify me when it launches"/>
+            <button class="btn btn--primary" id="notifyBtn">Notify Me</button>
+          </div>
+          <div id="notifySuccess" hidden class="notify-success">✅ Done! We'll notify you when tracking goes live.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="testimonials section--alt" id="testimonials">
+  <div class="container">
+    <div class="section-header section-header--centered">
+      <span class="section-tag">Happy Customers</span>
+      <h2 class="section-title">Don't Just Take Our Word For It.</h2>
+    </div>
+    <div class="testimonials__grid">
+      <div class="testimonial-card fade-in">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p>"I used to dread laundry day. Now I just WhatsApp them. Everything comes back folded better than I ever managed. The bedding especially — hotel quality."</p>
+        <div class="testimonial-card__author">
+          <div class="author-avatar" style="background:#E8F0FE;color:#1A73E8">WK</div>
+          <div><strong>Wanjiru Kamau</strong><small>Ongata Rongai</small></div>
+        </div>
+      </div>
+      <div class="testimonial-card testimonial-card--featured fade-in">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p>"Busy med student, zero time. The stain removal on my white coat? Miraculous. They even sent me a WhatsApp update when it was ready. 10/10."</p>
+        <div class="testimonial-card__author">
+          <div class="author-avatar" style="background:rgba(255,255,255,.2);color:#fff">BM</div>
+          <div><strong>Brian Mutua</strong><small>Kiserian</small></div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p>"Our salon towels every week — forty of them. Always returned smelling fresh, folded neatly, on time. Clients literally comment on them. Logic Laundry ndio!"</p>
+        <div class="testimonial-card__author">
+          <div class="author-avatar" style="background:#E8F5E9;color:#388E3C">AN</div>
+          <div><strong>Aisha Ndungu</strong><small>Salon Owner, Rongai</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GOOGLE MAPS PLACEHOLDER ═══ -->
+<section class="map-section section" id="location">
+  <div class="container">
+    <div class="section-header section-header--centered">
+      <span class="section-tag">Find Us</span>
+      <h2 class="section-title">We're in Ongata Rongai.</h2>
+      <p class="section-sub">Sunrise Apartments – MANNA, Ongata Rongai. Walk in or book a free pickup.</p>
+    </div>
+  </div>
+  <!--
+    GOOGLE MAPS INTEGRATION:
+    1. Go to https://maps.google.com → Search "Sunrise Apartments MANNA Ongata Rongai"
+    2. Click Share → Embed a map → Copy iframe code
+    3. Replace the div below with: <iframe src="YOUR_URL" width="100%" height="450" style="border:0;border-radius:20px;" allowfullscreen loading="lazy"></iframe>
+    4. Wrap in a container with padding: 0 24px
+  -->
+  <div id="google-maps-placeholder" class="map-placeholder">
+    <div class="map-placeholder__inner">
+      <div class="map-pin-anim">
+        <svg width="40" height="48" viewBox="0 0 40 48" fill="none"><path d="M20 0C9 0 0 9 0 20c0 15 20 28 20 28S40 35 40 20C40 9 31 0 20 0z" fill="#1A73E8"/><circle cx="20" cy="20" r="8" fill="white"/><circle cx="20" cy="20" r="4" fill="#1A73E8"/></svg>
+      </div>
+      <h3>Sunrise Apartments – MANNA</h3>
+      <p>Ongata Rongai, Nairobi, Kenya</p>
+      <a href="https://www.google.com/maps/search/Sunrise+Apartments+MANNA+Ongata+Rongai" target="_blank" rel="noopener" class="btn btn--primary" style="margin-top:12px">Open in Google Maps →</a>
+      <span class="map-placeholder__tag">📞 +254 715 617 654</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="contact section--alt" id="contact">
+  <div class="container">
+    <div class="section-header section-header--centered">
+      <span class="section-tag">Get in Touch</span>
+      <h2 class="section-title">Always a Message Away.</h2>
+      <p class="section-sub">"<em>Tuma ujumbe, tutajibu haraka</em>" — Send a message, we reply fast.</p>
+    </div>
+    <div class="contact__grid">
+      <div class="contact__info">
+        <div class="contact-block"><div class="contact-block__icon">📞</div><div><h4>Call Us</h4><a href="tel:+254715617654">+254 715 617 654</a><small>Mon–Sat, 7am–8pm</small></div></div>
+        <div class="contact-block"><div class="contact-block__icon">💬</div><div><h4>WhatsApp</h4><a href="https://wa.me/254715617654" target="_blank" rel="noopener">+254 715 617 654</a><small>Fastest response — usually under 5 min</small></div></div>
+        <div class="contact-block"><div class="contact-block__icon">🕐</div><div><h4>Operating Hours</h4><p>Monday – Saturday: 7:00 AM – 8:00 PM</p><p>Sunday: 9:00 AM – 4:00 PM</p></div></div>
+        <div class="contact-block"><div class="contact-block__icon">📍</div><div><h4>Location</h4><p>Sunrise Apartments – MANNA</p><p>Ongata Rongai, Nairobi</p></div></div>
+        <a href="https://wa.me/254715617654?text=Hi%20Logic%20Laundry!%20Nataka%20quote%20ya%20bure%20leo." class="btn btn--whatsapp btn--full" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+          Piga WhatsApp Sasa / Order Now
+        </a>
+      </div>
+      <form class="contact__form" id="contactForm" novalidate>
+        <h3>Send Us a Message</h3>
+        <div class="form-group"><label for="c-name">Your Name</label><input type="text" id="c-name" name="name" placeholder="Full name"/></div>
+        <div class="form-group"><label for="c-phone">Phone Number</label><input type="tel" id="c-phone" name="phone" placeholder="07XX XXX XXX"/></div>
+        <div class="form-group"><label for="c-email">Email (optional)</label><input type="email" id="c-email" name="email" placeholder="you@example.com"/></div>
+        <div class="form-group"><label for="c-service">Service Interested In</label>
+          <select id="c-service" name="service"><option value="">Select a service</option><option>Regular Washing</option><option>Express Service</option><option>Bedding &amp; Curtains</option><option>Ironing</option><option>Stain Removal</option><option>Corporate Package</option></select></div>
+        <div class="form-group"><label for="c-message">Message</label><textarea id="c-message" name="message" rows="3" placeholder="Tell us how we can help..."></textarea></div>
+        <button type="submit" class="btn btn--primary btn--full">Send Message →</button>
+        <div class="form-success" id="formSuccess" hidden>✅ Asante! We'll respond on WhatsApp within 5 minutes.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <div class="footer__logo"><span class="footer__logo-icon">◈</span><span>Logic <strong>Laundry</strong></span></div>
+      <p>Ongata Rongai's most trusted laundry service. Professional, reliable, always on time.</p>
+      <p class="footer__swahili">"<em>Nguo safi, maisha bora.</em>"<br/><small>Clean clothes, better life.</small></p>
+      <p class="footer__eco">🌿 Proud users of eco-friendly, biodegradable detergents.</p>
+    </div>
+    <div class="footer__links">
+      <h4>Quick Links</h4>
+      <ul><li><a href="#services">Services</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#quote">Book Pickup</a></li><li><a href="#track">Track Order</a></li></ul>
+    </div>
+    <div class="footer__links">
+      <h4>Services</h4>
+      <ul><li><a href="#services">Washing &amp; Folding</a></li><li><a href="#services">Ironing</a></li><li><a href="#services">Bedding &amp; Curtains</a></li><li><a href="#services">Stain Removal</a></li><li><a href="#services">Corporate Laundry</a></li></ul>
+    </div>
+    <div class="footer__contact">
+      <h4>Contact</h4>
+      <p><a href="tel:+254715617654">+254 715 617 654</a></p>
+      <p><a href="https://wa.me/254715617654" target="_blank" rel="noopener">WhatsApp Us</a></p>
+      <p>Mon–Sat: 7am – 8pm</p>
+      <p>Sun: 9am – 4pm</p>
+      <p>Sunrise Apartments – MANNA</p>
+      <p>Ongata Rongai, Nairobi</p>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="container">
+      <p>© 2025 Logic Laundry Services. All rights reserved. Ongata Rongai, Nairobi.</p>
+      <p>"<em>Kwa sababu nguo safi hubadilisha mood yako yote.</em>" — Because clean clothes change your whole mood.</p>
     </div>
   </div>
 </footer>
 
-<!-- FLOATING WHATSAPP -->
-<a href="#" class="wa-float">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-  Order Now
+<!-- ═══ FLOATING WHATSAPP ═══ -->
+<a href="https://wa.me/254715617654?text=Hi%20Logic%20Laundry!%20Nataka%20quote%20ya%20bure%20leo." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Order on WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+  <span>Order Now</span>
 </a>
 
-</div>
+<!-- ═══ VIRTUAL ASSISTANT SLOT ═══ -->
+<div id="virtual-assistant-slot"><!-- Virtual Assistant will be integrated here --></div>
+
+<script src="main.js"></script>
+</body>
+</html>
